@@ -1,5 +1,8 @@
-.app-layout {
+.ant-layout {
   height: 100vh;
+}
+.app-layout {
+  background: #F6F8FC;
   .app-header {
     display: flex;
     align-items: center;
@@ -11,35 +14,48 @@
     z-index: 5;
     .header-left {
       display: flex;
+      align-items: center;
+      height: 60px;
       img {
-        width: 30px;
+        width: 40px;
+        height: 40px;
       }
       .app-name {
-        margin-left: 9px;
+        font-weight: 900;
+        font-size: 16px;
       }
-    }
-
-    .ant-avatar {
-      background: #61dafb;
     }
   }
 
   .app-body {
     .meal-container {
-      background-image: url(https://websitedemos.net/steak-house-02/wp-content/uploads/sites/841/2021/05/hero-bg.jpg);
-      background-size: cover;
-      background-position: center;
-      background-color: transparent;
+      height: 100%;
+
       .search-bar {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 20px;
+        padding-top: 20px;
+        padding-bottom: 10px;
         position: sticky;
         top: 64px;
+        background: #F6F8FC;
+        z-index: 3;
+
         .ant-input {
           width: 400px;
           min-width: 100px;
+        }
+      }
+
+      .content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 90%;
+
+        .ant-spin-container {
+          background: #F6F8FC;
         }
       }
 
@@ -50,15 +66,37 @@
         justify-content: center;
       }
     }
-    .meal-details-container {
-      .ant-spin-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
 
+    .back-arrow {
+      padding: 10px 20px;
+      position: sticky;
+      top: 64px;
+      z-index: 3;
+      background: #F6F8FC;
+
+      .anticon-arrow-left {
+        padding: 10px;
+        border-radius: 50%;
+        border: 1px solid #eaeaea;
+
+        &:hover {
+          border: 1px solid rgba(0, 23, 105, .08);
+        }
+      }
+    }
+
+    .meal-details-container {
+      height: 100%;
+      .ant-spin-container {
+        background: #F6F8FC;
         .meal-details-card {
-          width: 70%;
-          margin-top: 20px;
+          height: 100%;
+          margin: 0 20px 20px 20px;
+
+          .title {
+            font-size: 16px;
+            font-weight: 700;
+          }
 
           .meal-image {
             display: flex;
@@ -67,7 +105,7 @@
           }
 
           .ant-image {
-            width: 40%;
+            width: 300px;
 
             .meal-preview {
             }
@@ -77,20 +115,91 @@
             margin-right: 15px;
           }
         }
+      }
+    }
 
-        .checkout-button {
-          margin-top: 15px;
+    .purchase-container {
+      display: flex;
+      height: 100%;
+      width: 100%;
+
+      .left {
+        width: 50%;
+        padding-left: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .form {
+          .ant-form {
+            //width: 400px;
+          }
+        }
+      }
+
+      .right {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+
+        img {
+          height: 100%;
+          width: 400px;
         }
       }
     }
-    .purchase-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      .ant-form {
-        width: 50%;
+
+    .steps {
+      padding: 20px;
+
+      .progress {
+        .ant-steps-item-content {
+          height: 75px;
+        }
+
+        .ant-steps-item-finish {
+          .ant-steps-item-icon {
+            background: #AFE90C;
+
+            .anticon-check {
+              color: black;
+            }
+          }
+
+          .ant-steps-item-title::after {
+            background-color: #AFE90C !important;
+          }
+
+          .ant-steps-item-container > .ant-steps-item-tail::after {
+            background-color: #AFE90C !important;
+          }
+        }
+      }
+    }
+
+    .order-content {
+      background: #F6F8FC;
+      .order-container {
+        width: 100%;
+        height: calc(100% - 200px);
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        .left {
+          padding: 20px;
+        }
+
+        .right {
+          width: 50%;
+          display: flex;
+          justify-content: center;
+
+          img {
+            height: 100%;
+            width: 400px;
+          }
+        }
       }
     }
   }
@@ -100,4 +209,37 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+// To handle very small mobile devices
+@media (max-width: 750px) {
+  .search-bar {
+    .ant-input {
+      width: 200px !important;
+    }
+  }
+  .purchase-container {
+    background: #F6F8FC;
+    .left {
+      width: 100% !important;
+      padding: 20px;
+      .form {
+        .ant-form {
+          width: 100%;
+        }
+      }
+    }
+    .right {
+      display: none !important;
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .order-content {
+    .left {
+      width: 100% !important;
+      padding: 20px;
+    }
+  }
 }

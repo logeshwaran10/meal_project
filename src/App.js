@@ -17,16 +17,18 @@ const { Header, Content } = Layout;
 function App() {
   return (
       <Provider store={store}>
-          <Layout className={'app-layout'}>
+          <Layout>
+              <Layout className={'app-layout'}>
               <Header className={'app-header'}>
                   <span className={'header-left'}>
                       <img src={logo} alt={'App Logo'}/>
-                      <h3 className={'app-name'}>Meals</h3>
+                      <p className={'app-name'}>Meals</p>
                   </span>
               </Header>
-              <Content className={'app-body'}>
-                  <AppRouter/>
-              </Content>
+                  <Content className={'app-body'}>
+                      <AppRouter/>
+                  </Content>
+              </Layout>
           </Layout>
       </Provider>
   );

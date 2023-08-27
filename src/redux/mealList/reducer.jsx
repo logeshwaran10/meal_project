@@ -18,7 +18,7 @@ const MealsReducer = createSlice({
         },
         getMealListSuccess(state, action) {
             state.loading = false;
-            state.mealList = action?.payload?.meals;
+            state.mealList = action?.payload?.meals ? action?.payload?.meals.slice(0, 10) : [];
         },
         getMealListFailure(state) {
             state.loading = false;

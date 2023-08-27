@@ -25,25 +25,30 @@ function MealList() {
     }, []);
 
     const onSearch = debounce((event) => {
-        console.log('onSearch', )
         if(event.target.value.trim && !!event?.target?.value) {
             dispatch(getMealList(event.target.value));
+        } else {
+            dispatch(getMealList());
         }
-    }, 500);
+    }, 700);
 
 
     return (
         <div className={'meal-container'}>
             <div className={'search-bar'}>
-                <Input placeholder={'Search Your Meal'} onChange={onSearch}/>
+                <Input placeholder={'Search Your Meal'} onChange={onSearch} disabled={loader}/>
             </div>
-            <div>
-            <Spin
-                spinning={loader}
-                indicator={<LoadingOutlined style={{ fontSize: 30 }} spin />}
-            >
-                <MealListCard meals={mealList}/>
-            </Spin>
+            <div className={'content'}>
+                <Spin
+                    spinning={loader}
+                    indicator={<LoadingOutlined style={{ fontSize: 30 }} spin />}
+                >
+                    {mealList?.length > 0 ?
+                        <MealListCard meals={mealList}/>
+                        :
+                        <div>No Data</div>
+                    }
+                </Spin>
             </div>
         </div>
     );
