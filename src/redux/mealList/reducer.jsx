@@ -28,13 +28,10 @@ const MealsReducer = createSlice({
         },
         getMealDetailSuccess(state, action) {
             state.mealDetailsLoader = false;
-            state.mealDetails = action.payload?.meals
+            state.mealDetails = action?.payload?.meals || []
         },
         getMealDetailFailure(state) {
             state.mealDetailsLoader = false;
-        },
-        resetMealDetails(state) {
-            state.mealDetails = []
         },
         setUserDetails(state, action) {
             state.userDetails = action.payload
@@ -48,7 +45,6 @@ export const {
     getMealDetail,
     getMealDetailSuccess,
     getMealDetailFailure,
-    resetMealDetails,
     setUserDetails
 } = MealsReducer.actions;
 export default MealsReducer.reducer;

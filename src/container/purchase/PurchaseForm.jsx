@@ -5,10 +5,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 //Actions
-import { setUserDetails } from "../../redux/mealList/reducer";
+import {getMealDetailSuccess, setUserDetails} from "../../redux/mealList/reducer";
 
 //Component
 import purchase from '../../assets/purchase.svg';
+import {ArrowLeftOutlined} from "@ant-design/icons";
 
 const ShippingForm = () => {
     const [formData, setFormData] = useState({
@@ -34,9 +35,18 @@ const ShippingForm = () => {
         dispatch(setUserDetails(formData))
         navigate(`/meal/${params?.mealId}/order-details`);
     };
+    const onBack = () => {
+        dispatch(setUserDetails([]))
+        dispatch(getMealDetailSuccess(null));
+        navigate('/meal')
+    }
 
 
     return (
+        <>
+        <div className={'back-arrow'}>
+            <ArrowLeftOutlined onClick={onBack}/> {' '} Go To Home
+        </div>
         <div className={'purchase-container'}>
             <div className={'left'}>
                 <div>
@@ -79,6 +89,8 @@ const ShippingForm = () => {
                 <img src={purchase} alt={'purchase'}/>
             </div>
         </div>
+        </>
+
     );
 };
 

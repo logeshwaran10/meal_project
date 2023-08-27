@@ -1,14 +1,18 @@
 //Dependencies
 import React, { useEffect, useState } from 'react';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Typography, Steps} from 'antd';
+
+//Actions
+import { setUserDetails, getMealDetailSuccess } from "../../redux/mealList/reducer";
 
 //Component
 import conforming from '../../assets/accepted.svg';
 import packing from '../../assets/packing.svg';
 import shipped from '../../assets/shipped.svg';
 import delivered from '../../assets/delivered.svg';
+import { ArrowLeftOutlined } from "@ant-design/icons";
 
 
 const { Text } = Typography;
@@ -41,7 +45,8 @@ const OrderDetails = () => {
      [currentStatus, setCurrentStatus ] = useState({step: 0, percent: 10, status: 'process'}),
      [currentIndex, setCurrentIndex] = useState(0),
      [bgImage, setBgImage] = useState(conforming),
-        navigate = useNavigate();
+        navigate = useNavigate(),
+        dispatch = useDispatch();
 
     useEffect(() => {
         if(!mealDetails) {
@@ -89,6 +94,11 @@ const OrderDetails = () => {
         };
     }, [currentStatus]);
 
+    const onBack = () => {
+        dispatch(setUserDetails([]))
+        dispatch(getMealDetailSuccess(null));
+        navigate('/meal')
+    }
 
     if(!mealDetails) {
         return  ''
@@ -96,15 +106,18 @@ const OrderDetails = () => {
 
     return (
         <div className={'order-content'}>
-        <div className={'steps'}>
-            <Steps
-                responsive={true}
-                className={'progress'}
-                current={currentStatus?.step}
-                percent={currentStatus?.percent}
-                status={currentStatus?.status}
-                items={orderDetails}
-            />
+            <div className={'back-arrow'}>
+                <ArrowLeftOutlined onClick={onBack}/> {' '} Go To Home
+            </div>
+            <div className={'steps'}>
+                <Steps
+                    responsive={true}
+                    className={'progress'}
+                    current={currentStatus?.step}
+                    percent={currentStatus?.percent}
+                    status={currentStatus?.status}
+                    items={orderDetails}
+                />
         </div>
         <div className={'order-container'}>
             <div className={'left'}>

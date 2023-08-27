@@ -8,7 +8,7 @@ import { Typography } from 'antd';
 
 
 //Actions
-import { getMealDetail, resetMealDetails } from "../../redux/mealList/reducer";
+import { getMealDetail, getMealDetailSuccess } from "../../redux/mealList/reducer";
 
 //Component
 import { LoadingOutlined, ArrowLeftOutlined } from "@ant-design/icons";
@@ -27,13 +27,13 @@ function MealDetails (props){
     }, []);
 
     const onBack = () => {
-        dispatch(resetMealDetails())
-        navigate(-1)
+        dispatch(getMealDetailSuccess(null))
+        navigate('/meal')
     }
     return (
         <>
         <div className={'back-arrow'}>
-            <ArrowLeftOutlined onClick={onBack}/>
+            <ArrowLeftOutlined onClick={onBack}/> {' '} Go To Home
         </div>
         <div className={`meal-details-container ${mealDetailsLoader ? 'justify-content-center' : ''}`} >
             <Spin
