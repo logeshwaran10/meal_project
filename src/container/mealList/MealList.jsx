@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Input, Spin } from "antd";
 import { debounce } from "lodash";
+import { Link } from 'react-router-dom';
 
 //Actions
 import { getMealList } from "../../redux/mealList/reducer";
@@ -37,6 +38,7 @@ function MealList() {
         <div className={'meal-container'}>
             <div className={'search-bar'}>
                 <Input placeholder={'Search Your Meal'} onChange={onSearch} disabled={loader}/>
+                <Link to={'/users'}>Go to User List</Link>
             </div>
             <div className={'content'}>
                 <Spin

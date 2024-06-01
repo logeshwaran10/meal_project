@@ -2,6 +2,7 @@ import MealList from "../container/mealList/MealList";
 import MealDetails from '../container/mealDetails/MealDetails';
 import PurchaseForm from '../container/purchase/PurchaseForm';
 import OrderDetails from '../container/purchase/orderDetails';
+import UsersList from '../container/userList/usersTable';
 
 const routes = [
     {
@@ -23,6 +24,10 @@ const routes = [
     {
         path: '/meal/:mealId/order-details',
         component: <OrderDetails/>
+    },
+    {
+        path: '/users',
+        component: <UsersList/>
     }
 
 ];
